@@ -18,20 +18,12 @@ function bookingRepo () {
 
   const update = (data) => {
     const dataIndexToReplace = list.findIndex((b) => b.id === data.id)
-
-    if (dataIndexToReplace === -1) {
-      return null
-    }
     list[dataIndexToReplace] = data
     return data
   }
 
   const del = (id) => {
     const dataIndexToDelete = list.findIndex((b) => b.id === id)
-
-    if (dataIndexToDelete === -1) {
-      return null
-    }
     return list.splice(dataIndexToDelete, 1)[0]
   }
 

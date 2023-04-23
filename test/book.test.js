@@ -176,6 +176,26 @@ describe('CRUDS BOOKS', function () {
         done()
       })
   })
+  it('DELETE /books should return a status code 400 if isbn13 malformed', (done) => {
+    const deletedBook = {
+      isbn13: '97827463231035966',
+      title: 'Cree su primer sitio web con dreamweaver 8',
+      authors: 'B.A. GUERIN',
+      editor: 'ENI',
+      langCode: 'ES',
+      price: 10.02
+    }
+
+    chai.request(api)
+      .delete('/books/97827463231035966')
+      .end((_, res) => {
+        expect(res).to.have.status(400)
+        expect(res.body).to.deep.equal({
+          error: 'isbn13 is required and must be 13 characters long'
+        })
+        done()
+      })
+  })
   it('DELETE /books should return a status code 200 with deleted element', (done) => {
     const deletedBook = {
       isbn13: '9782746035966',

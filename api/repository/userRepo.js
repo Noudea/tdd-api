@@ -36,20 +36,12 @@ function userRepo (User) {
 
   const update = (user) => {
     const userIndexToReplace = users.findIndex((b) => b.id === user.id)
-
-    if (userIndexToReplace === -1) {
-      return null
-    }
     users[userIndexToReplace] = user
     return user
   }
 
   const del = (id) => {
     const userIndexToDelete = users.findIndex((b) => b.id === id)
-
-    if (userIndexToDelete === -1) {
-      return null
-    }
     return users.splice(userIndexToDelete, 1)[0]
   }
 

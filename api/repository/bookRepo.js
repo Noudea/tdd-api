@@ -28,10 +28,6 @@ function bookRepo () {
 
   const deleteBook = (id) => {
     const BookIndexToDelete = books.findIndex((b) => b.isbn13 === id)
-
-    if (BookIndexToDelete === -1) {
-      return null
-    }
     return books.splice(BookIndexToDelete, 1)[0]
   }
 

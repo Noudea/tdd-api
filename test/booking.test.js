@@ -576,6 +576,27 @@ describe('CRUDS BOOKING', () => {
         done()
       })
   })
+  it('PUT /bookings should return status code 404 if item not found', function (done) {
+    chai.request(api)
+      .put('/bookings/9dedb660-b74d-4c5e-a31f-a0a7850f8a70')
+      .send({
+        rentDate: '2020-01-01',
+        returnDate: '2020-01-10',
+        item: '9782744005097',
+        user: 'f92fefd1-4059-447b-89c6-a7e2482f7a5f'
+      })
+      .end(function (_, res) {
+        expect(res).to.have.status(404)
+        expect(res.body).to.deep.equal({
+          error: {
+            message: 'Book not found',
+            status: 404,
+            code: 'BOOK_NOT_FOUND'
+          }
+        })
+        done()
+      })
+  })
   it('PUT rentDate should be < to returnDate', function (done) {
     chai.request(api)
       .put('/bookings/9dedb660-b74d-4c5e-a31f-a0a7850f8a70')
